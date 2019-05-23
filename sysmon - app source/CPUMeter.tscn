@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://CPUMeter.gd" type="Script" id=1]
+[ext_resource path="res://Vectors/Meter.png" type="Texture" id=2]
+[ext_resource path="res://Vectors/Needle.png" type="Texture" id=3]
+[ext_resource path="res://Label.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="SegmentShape2D" id=2]
+
+custom_solver_bias = 0.0
+a = Vector2( 0, 0 )
+b = Vector2( 0, 10 )
+
+[node name="CPUMeter" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="meter" type="Area2D" parent="." index="0"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="meterpng" type="Sprite" parent="meter" index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="metercollisionshape" type="CollisionShape2D" parent="meter" index="1"]
+
+shape = SubResource( 1 )
+
+[node name="needle" type="KinematicBody2D" parent="." index="1"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="needlepng" type="Sprite" parent="needle" index="0"]
+
+texture = ExtResource( 3 )
+
+[node name="needlecollisionshape" type="CollisionShape2D" parent="needle" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 4 )
+
+
