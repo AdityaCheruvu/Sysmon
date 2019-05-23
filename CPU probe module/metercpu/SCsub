@@ -1,0 +1,6 @@
+# SCsub
+Import('env')
+
+env.add_source_files(env.modules_sources,"*.cpp") # just add all cpp files to the build
+env.Append(CPPPATH="mylib/include") # this is a relative path
+env.Append(CPPPATH="#myotherlib/include") # this is an 'absolute' path
